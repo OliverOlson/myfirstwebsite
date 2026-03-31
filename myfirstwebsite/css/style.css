@@ -1,5 +1,5 @@
     body {
-
+        
     font-family: "Times New Roman", Times, serif;   /* clean text */
     text-align: center;                             /* centers everything */
     padding: 50px;                                  /* space around content */
@@ -66,4 +66,10 @@ button:hover {
     left: 10px;
     z-index: 1000; /* above everything else */
     user-select: none;
+}
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 600px;
+    height: 450px;
 }
