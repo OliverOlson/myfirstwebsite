@@ -1,1 +1,80 @@
+    body {
+        
+    font-family: "Times New Roman", Times, serif;   /* clean text */
+    text-align: center;                             /* centers everything */
+    padding: 50px;                                  /* space around content */
+    transition: background-color 0.5s;             /* smooth color change */
+}
 
+    button {
+    font-family: "Times New Roman", Times, serif; /* match page font */
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    border: 2px solid black;         /* classic black border */
+    border-radius: 4px;               /* small rounded corners */
+    background-color: #f0f0f0;        /* light gray background */
+    color: black;                     /* black text */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: black;          /* invert colors on hover */
+    color: white;
+}
+
+    p {
+        font-size: 20px;
+        margin: 20px 0;
+    }
+    /* Sidebar styles */
+.sidebar {
+    height: 100%; /* full page height */
+    width: 0;     /* hidden by default */
+    position: fixed; /* stay in place */
+    top: 0;
+    left: 0;
+    background-color: #f0f0f0; /* light gray */
+    overflow-x: hidden; /* hide horizontal scroll */
+    transition: 0.3s;  /* smooth open/close */
+    padding-top: 60px; /* space from top */
+    border-right: 2px solid black;
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: black;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: black;
+    color: white;
+}
+
+/* Hamburger button styles */
+.menu-button {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000; /* above everything else */
+    user-select: none;
+}
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 600px;
+    height: 450px;
+}
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 60px;
+}
