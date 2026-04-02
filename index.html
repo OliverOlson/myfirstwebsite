@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Website</title>
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Sidebar menu -->
+    <div id="sidebar" class="sidebar">
+        <a href="index.html">Home</a>
+        <a href="about-me.html">About Me</a>
+        <a href="mn-twins.html">MN Twins</a>
+        <a href="message-hub.html">Message Hub</a>
+    </div>
+
+    <!-- Hamburger button -->
+    <div id="menuButton" class="menu-button" onclick="toggleSidebar()">
+        &#9776; <!-- three-line hamburger icon -->
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+        <h1>Hello!</h1>
+        <p>My name is Oliver Olson</p>
+        <h2>About This Page</h2>
+        <p id="message">This page is where I'm learning how to build websites using HTML.</p>
+        <button onclick="showMessage()">Click Me</button>
+        <button id="colorButton" onclick="changeColor()">Turn Blue</button>
+        <p>Those are some fun buttons!</p>
+    </div>
+
+    <!-- Link to JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
