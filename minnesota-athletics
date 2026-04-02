@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <title>Page 2</title>
+  <title>Minnesota Athletics</title>
 </head>
 <body>
   <!-- Sidebar menu -->
 <div id="sidebar" class="sidebar">
     <a href="index.html">Home</a>
     <a href="about-me.html">About Me</a>
-    <a href="page2.html">Page 2</a>
+    <a href="minnesota-athletics.html">Minnesota Athletics</a>
 </div>
 
 <!-- Hamburger button -->
@@ -19,10 +19,10 @@
     &#9776;
 </div>
 
-  <section id="page2">
-    <h1>Page 2</h1>
-    <p>This is the content for Page 2.</p>
-  </section>
+  <section id="minnesota-athletics">
+    <h1>Minnesota Twins 2026 Record</h1>
+    <p id="twins-record">Loading...</p>
+</section>
 
   <script src="js/script.js"></script>
 </body>
