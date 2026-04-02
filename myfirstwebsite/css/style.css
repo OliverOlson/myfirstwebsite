@@ -73,3 +73,16 @@ img {
     max-width: 600px;
     height: 450px;
 }
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 60px;
+}
+.profile-pic {
+   .profile-pic {
+    display: block;
+    margin: 20px auto;
+    max-width: 600px;
+    width: 100%;
+}
+}
