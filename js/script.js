@@ -46,6 +46,8 @@ const divisions = data.records;
                     const wins = team.leagueRecord.wins;
                     const losses = team.leagueRecord.losses;
                     document.getElementById('twins-record').innerText = `Record: ${wins}-${losses}`;
+                    const now = new Date();
+document.getElementById('last-updated').innerText = `Updated as of ${now.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})}`;
                 }
             }
         }
