@@ -78,3 +78,9 @@ img {
     margin: 0 auto;
     padding-left: 60px;
 }
+.profile-pic {
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+    max-width: 80%;
+}
