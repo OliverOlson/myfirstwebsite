@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Message Hub</title>
+</head>
+<body>
+  <!-- Sidebar menu -->
+  <div id="sidebar" class="sidebar">
+    <a href="index.html">Home</a>
+    <a href="about-me.html">About Me</a>
+    <a href="mn-twins.html">MN Twins</a>
+    <a href="message-hub.html">Message Hub</a>
+  </div>
+
+  <!-- Hamburger button -->
+  <div id="menuButton" class="menu-button" onclick="toggleSidebar()">
+    &#9776;
+  </div>
+
+  <div class="content">
+    <section id="message-hub">
+      <h1>Message Hub</h1>
+      <p>Feel free to leave a message!</p>
+
+      <h2>Message Board</h2>
+      <input type="text" id="messageInput" placeholder="Type your message">
+      <button onclick="sendMessage()">Send</button>
+
+      <div id="messages"></div>
+    </section>
+  </div>
+
+  <!-- Firebase App (core) -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <!-- Firebase Database -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+  <!-- Initialize Firebase -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAQdGxOhgUwSm4VBuxeAv0jRa-rVing5hg",
+      authDomain: "my-first-website-772e3.firebaseapp.com",
+      databaseURL: "https://my-first-website-772e3-default-rtdb.firebaseio.com",
+      projectId: "my-first-website-772e3",
+      storageBucket: "my-first-website-772e3.appspot.com",
+      messagingSenderId: "422773213130",
+      appId: "1:422773213130:web:6764dc744390c536bcb133"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+  </script>
+
+  <!-- Your custom JS -->
+  <script src="js/script.js"></script>
+</body>
+</html>
