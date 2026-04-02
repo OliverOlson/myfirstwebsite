@@ -75,6 +75,12 @@ function sendMessage() {
     input.value = ''; // clear the input box
 }
 
+document.getElementById('messageInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
+
 // Listen for messages and display them
 firebase.database().ref('messages').on('value', function(snapshot) {
     const messagesDiv = document.getElementById('messages');
@@ -86,3 +92,86 @@ firebase.database().ref('messages').on('value', function(snapshot) {
         messagesDiv.appendChild(p);
     });
 });
+// Show/hide auth forms
+function showSignup() {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('signup-form').style.display = 'block';
+}
+
+function showLogin() {
+    document.getElementById('signup-form').style.display = 'none';
+    document.getElementById('login-form').style.display = 'block';
+}
+
+// Sign up
+function signup() {
+    const firstName = document.getElementById('signupFirst').value.trim();
+    const lastName = document.getElementById('signupLast').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value.trim();
+
+    if (!firstName || !lastName || !email || !password) {
+        alert('Please fill in all fields!');
+        return;
+    }
+
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(function(userCredential) {
+            const user = userCredential.user;
+            // Store name in database
+            firebase.database().ref('users/' + user.uid).set({
+                firstName: firstName,
+                lastName: lastName,
+                email: email
+            });
+        })
+        .catch(function(error) {
+            alert(error.message);
+        });
+}
+
+// Login
+function login() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch(function(error) {
+            alert(error.message);
+        });
+}
+
+// Logout
+function logout() {
+    firebase.auth().signOut();
+}
+
+// Listen for auth state changes
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is logged in
+        firebase.database().ref('users/' + user.uid).once('value', function(snapshot) {
+            const userData = snapshot.val();
+            if (userData) {
+                document.getElementById('welcome-message').innerText = 
+                    `Welcome, ${userData.firstName} ${userData.lastName}!`;
+            }
+        });
+        document.getElementById('auth-section').style.display = 'none';
+        document.getElementById('board-section').style.display = 'block';
+    } else {
+        // User is logged out
+        document.getElementById('auth-section').style.display = 'block';
+        document.getElementById('board-section').style.display = 'none';
+    }
+});
+
+// Toggle password visibility
+function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    if (input.type === 'password') {
+        input.type = 'text';
+    } else {
+        input.type = 'password';
+    }
+}
