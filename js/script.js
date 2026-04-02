@@ -35,3 +35,21 @@ function toggleSidebar() {
         sidebar.style.width = '250px'; // open width
     }
 }
+async function fetchTwinsRecord() {
+    const response = await fetch('https://statsapi.mlb.com/api/v1/standings?leagueId=103&season=2026');
+    const data = await response.json();
+    
+    const divisions = data.records;
+    
+    for (let division of divisions) {
+        for (let team of division.teamRecords) {
+            if (team.team.id === 142) {
+                const wins = team.leagueRecord.wins;
+                const losses = team.leagueRecord.losses;
+                document.getElementById('twins-record').innerText = `Record: ${wins}-${losses}`;
+            }
+        }
+    }
+}
+
+fetchTwinsRecord();
