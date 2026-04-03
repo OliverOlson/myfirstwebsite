@@ -60,6 +60,7 @@
     <p>Enter your email and we'll send you a reset link.</p>
     <input type="email" id="forgotEmail" placeholder="Email"><br>
     <button onclick="sendResetEmail()">Send Reset Email</button>
+<p style="font-size: 22px; color: rgb(0, 0, 0);">Don't see the email? Check your spam or junk folder.</p>
     <p><span onclick="showLogin()" style="cursor:pointer; text-decoration:underline;">Back to login</span></p>
 </div>
 
@@ -77,7 +78,7 @@
 
     </section>
   </div>
-
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
