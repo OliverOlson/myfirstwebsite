@@ -98,11 +98,34 @@ firebase.database().ref('messages').on('value', function(snapshot) {
     
     snapshot.forEach(function(child) {
     const val = child.val();
-    if (!val.text) return; // skip messages with no text
-    const p = document.createElement('p');
+    if (!val.text) return;
+    
+    const messageId = child.key;
+    const adminUID = 'TnkpB0VOT9U5weILoLKtAGc8rYj2';
+    const currentUser = firebase.auth().currentUser;
+    
+    // Create message container
+    const div = document.createElement('div');
+    div.style.borderBottom = '1px solid #ccc';
+    div.style.padding = '10px 0';
+    
+    // Message text and sender
     const sender = val.sender ? val.sender : 'Unknown';
+    const p = document.createElement('p');
     p.innerText = val.text + '  •  ' + sender;
-    messagesDiv.appendChild(p);
+    div.appendChild(p);
+    
+    // Delete button — only for admin
+    if (currentUser && currentUser.uid === adminUID) {
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerText = '🗑️ Delete';
+        deleteBtn.onclick = function() {
+            firebase.database().ref('messages/' + messageId).remove();
+        };
+        div.appendChild(deleteBtn);
+    }
+    
+    messagesDiv.appendChild(div);
 });
 });
 // Show/hide auth forms
