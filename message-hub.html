@@ -37,6 +37,7 @@
 </div><br>
           <button onclick="login()">Login</button>
           <p>Don't have an account? <span onclick="showSignup()" style="cursor:pointer; text-decoration:underline;">Sign up</span></p>
+<p><span onclick="showForgotPassword()" style="cursor:pointer; text-decoration:underline;">Forgot password?</span></p>
         </div>
 
         <!-- Signup Form (hidden by default) -->
@@ -52,6 +53,15 @@
           <button onclick="signup()">Sign Up</button>
           <p>Already have an account? <span onclick="showLogin()" style="cursor:pointer; text-decoration:underline;">Login</span></p>
         </div>
+
+        <!-- Forgot Password Form (hidden by default) -->
+<div id="forgot-form" style="display:none;">
+    <h2>Reset Password</h2>
+    <p>Enter your email and we'll send you a reset link.</p>
+    <input type="email" id="forgotEmail" placeholder="Email"><br>
+    <button onclick="sendResetEmail()">Send Reset Email</button>
+    <p><span onclick="showLogin()" style="cursor:pointer; text-decoration:underline;">Back to login</span></p>
+</div>
 
       </div>
 
