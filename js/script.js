@@ -162,8 +162,6 @@ function sendResetEmail() {
             alert(error.message);
         });
 }
-
-// Sign up
 function signup() {
     const firstName = document.getElementById('signupFirst').value.trim();
     const lastName = document.getElementById('signupLast').value.trim();
@@ -183,6 +181,13 @@ function signup() {
                 firstName: firstName,
                 lastName: lastName,
                 email: email
+            });
+
+            // Send welcome email
+            emailjs.init('8bkNhIWygssfih90a');
+            emailjs.send('service_qmf2cun', 'template_8xdsbga', {
+                to_name: firstName,
+                to_email: email
             });
         })
         .catch(function(error) {
