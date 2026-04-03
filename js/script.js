@@ -139,6 +139,30 @@ function showLogin() {
     document.getElementById('login-form').style.display = 'block';
 }
 
+function showForgotPassword() {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('signup-form').style.display = 'none';
+    document.getElementById('forgot-form').style.display = 'block';
+}
+
+function sendResetEmail() {
+    const email = document.getElementById('forgotEmail').value.trim();
+    
+    if (!email) {
+        alert('Please enter your email!');
+        return;
+    }
+    
+    firebase.auth().sendPasswordResetEmail(email)
+        .then(function() {
+            alert('Reset email sent! Check your inbox.');
+            showLogin();
+        })
+        .catch(function(error) {
+            alert(error.message);
+        });
+}
+
 // Sign up
 function signup() {
     const firstName = document.getElementById('signupFirst').value.trim();
