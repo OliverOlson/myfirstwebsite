@@ -67,12 +67,22 @@ function sendMessage() {
     
     if (message === '') return; // don't send empty messages
     
-    firebase.database().ref('messages').push({
-        text: message,
-        timestamp: Date.now()
-    });
+    const user = firebase.auth().currentUser;
     
-    input.value = ''; // clear the input box
+    firebase.database().ref('users/' + user.uid).once('value', function(snapshot) {
+        const userData = snapshot.val();
+        const firstName = userData.firstName;
+        const lastInitial = userData.lastName.charAt(0);
+        const displayName = firstName + ' ' + lastInitial + '.';
+        
+        firebase.database().ref('messages').push({
+            text: message,
+            sender: displayName,
+            timestamp: Date.now()
+        });
+        
+        input.value = ''; // clear the input box
+    });
 }
 
 document.getElementById('messageInput').addEventListener('keypress', function(event) {
@@ -87,10 +97,13 @@ firebase.database().ref('messages').on('value', function(snapshot) {
     messagesDiv.innerHTML = '';
     
     snapshot.forEach(function(child) {
-        const p = document.createElement('p');
-        p.innerText = child.val().text;
-        messagesDiv.appendChild(p);
-    });
+    const val = child.val();
+    if (!val.text) return; // skip messages with no text
+    const p = document.createElement('p');
+    const sender = val.sender ? val.sender : 'Unknown';
+    p.innerText = val.text + '  •  ' + sender;
+    messagesDiv.appendChild(p);
+});
 });
 // Show/hide auth forms
 function showSignup() {
