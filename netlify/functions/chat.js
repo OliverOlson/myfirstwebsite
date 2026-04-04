@@ -18,6 +18,15 @@ exports.handler = async function(event) {
     });
 
     const data = await response.json();
+    console.log('OpenAI response:', JSON.stringify(data));
+
+    if (!data.choices) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ reply: 'OpenAI error: ' + JSON.stringify(data) })
+        };
+    }
+
     return {
         statusCode: 200,
         body: JSON.stringify({ reply: data.choices[0].message.content })
