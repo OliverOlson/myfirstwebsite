@@ -277,6 +277,7 @@ async function sendChat() {
         
         const data = await response.json();
         const reply = data.reply;
+        console.log('AI reply:', reply);
         
         // Remove loading message
         document.getElementById('loading').remove();
