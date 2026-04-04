@@ -240,3 +240,68 @@ function togglePassword(inputId) {
         input.type = 'password';
     }
 }
+
+// Chat history for AI memory
+let chatHistory = [];
+
+async function sendChat() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    
+    if (message === '') return;
+    
+    // Show user message in chat display
+    const chatDisplay = document.getElementById('chat-display');
+    const userMsg = document.createElement('p');
+    userMsg.innerText = 'You: ' + message;
+    chatDisplay.appendChild(userMsg);
+    
+    // Add to history
+    chatHistory.push({ role: 'user', content: message });
+    
+    // Clear input
+    input.value = '';
+    
+    // Show loading
+    const loadingMsg = document.createElement('p');
+    loadingMsg.id = 'loading';
+    loadingMsg.innerText = 'AI is thinking...';
+    chatDisplay.appendChild(loadingMsg);
+    
+    try {
+        const response = await fetch('/.netlify/functions/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message, history: chatHistory })
+        });
+        
+        const data = await response.json();
+        const reply = data.reply;
+        
+        // Remove loading message
+        document.getElementById('loading').remove();
+        
+        // Show AI response
+        const aiMsg = document.createElement('p');
+        aiMsg.innerText = 'AI: ' + reply;
+        chatDisplay.appendChild(aiMsg);
+        
+        // Add to history
+        chatHistory.push({ role: 'assistant', content: reply });
+        
+    } catch (error) {
+        document.getElementById('loading').remove();
+        const errorMsg = document.createElement('p');
+        errorMsg.innerText = 'Something went wrong. Try again!';
+        chatDisplay.appendChild(errorMsg);
+    }
+}
+
+// Enter key sends chat message
+if (document.getElementById('chatInput')) {
+    document.getElementById('chatInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            sendChat();
+        }
+    });
+}
