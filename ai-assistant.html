@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>AI Assistant</title>
+</head>
+<body>
+  <!-- Sidebar menu -->
+  <div id="sidebar" class="sidebar">
+      <a href="index.html">Home</a>
+      <a href="about-me.html">About Me</a>
+      <a href="mn-twins.html">MN Twins</a>
+      <a href="message-hub.html">Message Hub</a>
+      <a href="ai-assistant.html">Chat</a>
+
+  </div>
+
+  <!-- Hamburger button -->
+  <div id="menuButton" class="menu-button" onclick="toggleSidebar()">
+      &#9776;
+  </div>
+
+  <div class="content">
+    <section id="ai-assistant">
+      <h1>AI Assistant</h1>
+      <p>Chat with this AI assistant.</p>
+      <div id="chat-display"></div>
+      <input type="text" id="chatInput" placeholder="Ask me anything!">
+      <button onclick="sendChat()">Send</button>
+    </section>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
