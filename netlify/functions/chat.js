@@ -18,7 +18,6 @@ exports.handler = async function(event) {
     });
 
     const data = await response.json();
-    console.log('OpenAI response:', JSON.stringify(data));
 
     if (!data.choices) {
         return {
