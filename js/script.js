@@ -1,5 +1,6 @@
 let isBlue = false;
 let messageChanged = false; // track state
+let chatHistory = [];
 
 function showMessage() {
     let paragraph = document.getElementById('message');
@@ -242,8 +243,6 @@ function togglePassword(inputId) {
 }
 
 // Chat history for AI memory
-let chatHistory = [];
-
 async function sendChat() {
     const input = document.getElementById('chatInput');
     const message = input.value.trim();
